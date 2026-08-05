@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="favicon-titel">
+  <title id="favicon-titel">Naturheilpraxis Heike Wommelsdorf</title>
+
+  <!-- Bewusst reduzierter als das grosse Logo: gefuellte Salbeiflaeche mit
+       cremefarbenem Zweig aus nur zwei Blattpaaren, damit es bei 16 Pixel
+       noch als Zweig erkennbar bleibt. -->
+  <rect width="64" height="64" rx="12" fill="#A9B79E"/>
+
+  <g fill="#FBF9F4">
+    <path d="M31 52 C29 41 32 30 36 18" fill="none" stroke="#FBF9F4"
+          stroke-width="4" stroke-linecap="round"/>
+    <path d="M0 0 Q10 -6.6 20 0 Q10 6.6 0 0 Z" transform="translate(30 41) rotate(-36)"/>
+    <path d="M0 0 Q10 -6.6 20 0 Q10 6.6 0 0 Z" transform="translate(30 41) rotate(216)"/>
+    <path d="M0 0 Q10 -6.6 20 0 Q10 6.6 0 0 Z" transform="translate(33.4 27) rotate(-48) scale(0.8)"/>
+    <path d="M0 0 Q10 -6.6 20 0 Q10 6.6 0 0 Z" transform="translate(33.4 27) rotate(228) scale(0.8)"/>
+  </g>
+</svg>

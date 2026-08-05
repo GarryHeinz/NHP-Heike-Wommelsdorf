@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-labelledby="logo-titel">
+  <title id="logo-titel">Naturheilpraxis Heike Wommelsdorf – Pinselkreis mit Olivenzweig</title>
+
+  <defs>
+    <!-- Blattform: spitz an beiden Enden, zeigt in Richtung +x -->
+    <path id="blatt" d="M0 0 Q7 -4.6 14 0 Q7 4.6 0 0 Z"/>
+  </defs>
+
+  <!-- Offener Pinselkreis: der Hauptbogen laeuft am oberen Ende in einen
+       duenneren Bogen aus – so entsteht der Eindruck eines Pinselstrichs. -->
+  <g fill="none" stroke="#A9B79E" stroke-linecap="round">
+    <path d="M99.39 66.95 A40 40 0 1 1 85.71 29.36" stroke-width="8.5"/>
+    <path d="M85.71 29.36 A40 40 0 0 1 96.25 43.10" stroke-width="4.2"/>
+  </g>
+
+  <!-- Olivenzweig -->
+  <g fill="#6E7F60">
+    <path d="M60 106 C58 86 62 66 68 44" fill="none" stroke="#6E7F60"
+          stroke-width="2.2" stroke-linecap="round"/>
+
+    <use href="#blatt" transform="translate(59.7 88) rotate(-38)"/>
+    <use href="#blatt" transform="translate(59.7 88) rotate(218)"/>
+
+    <use href="#blatt" transform="translate(61 75.8) rotate(-44) scale(0.94)"/>
+    <use href="#blatt" transform="translate(61 75.8) rotate(224) scale(0.94)"/>
+
+    <use href="#blatt" transform="translate(63.2 63.3) rotate(-50) scale(0.86)"/>
+    <use href="#blatt" transform="translate(63.2 63.3) rotate(230) scale(0.86)"/>
+
+    <use href="#blatt" transform="translate(65.5 53.8) rotate(-56) scale(0.74)"/>
+    <use href="#blatt" transform="translate(65.5 53.8) rotate(236) scale(0.74)"/>
+
+    <!-- Spitze -->
+    <use href="#blatt" transform="translate(68 44) rotate(-72) scale(0.62)"/>
+  </g>
+</svg>

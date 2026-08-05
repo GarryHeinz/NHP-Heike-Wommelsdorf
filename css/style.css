@@ -1,0 +1,554 @@
+/* ==========================================================================
+   Naturheilpraxis Heike Wommelsdorf – Stylesheet
+   Einziges Stylesheet der Seite. Kein Build, kein Framework.
+   Farben abgeleitet von der Visitenkarte (Creme / Salbeigruen / Olive).
+   ========================================================================== */
+
+/* --- 1. Design-Tokens ---------------------------------------------------- */
+
+:root {
+  --creme:        #F4F1E8;  /* Seitenhintergrund */
+  --creme-hell:   #FBF9F4;  /* Karten, Hero */
+  --salbei:       #A9B79E;  /* Farbflaechen, Footer */
+  --salbei-hell:  #C9D2C0;  /* Trennlinien, dezente Flaechen */
+  --olive-dunkel: #454F3C;  /* Fliesstext auf Creme (7,7:1) */
+  --olive-tief:   #38402F;  /* Text auf Salbeiflaechen (4,9:1) */
+  --olive:        #6E7F60;  /* NUR grosse Ueberschriften (3,8:1) */
+
+  --schrift: ui-sans-serif, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --breite:   62rem;   /* Seitencontainer */
+  --textmass: 68ch;    /* Lesbare Textspalte */
+
+  --abstand-s:  0.75rem;
+  --abstand-m:  1.5rem;
+  --abstand-l:  3rem;
+  --abstand-xl: 5rem;
+}
+
+/* --- 2. Reset (minimal) -------------------------------------------------- */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body,
+h1, h2, h3, p, ul, ol, li, figure, dl, dd, blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol { list-style: none; }
+
+img, svg { display: block; max-width: 100%; height: auto; }
+
+/* --- 3. Grundtypografie -------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--creme);
+  color: var(--olive-dunkel);
+  font-family: var(--schrift);
+  font-size: 1.0625rem;   /* 17px – Zielgruppe 50+ */
+  line-height: 1.7;
+  font-weight: 400;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+p, li { max-width: var(--textmass); }
+
+p + p,
+ul + p,
+dl + p { margin-top: 1em; }
+
+strong { font-weight: 600; }
+
+/* Ueberschriften: Grossbuchstaben mit weiten Abstaenden wie auf der Karte */
+h1, h2, h3 {
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  line-height: 1.35;
+  color: var(--olive-dunkel);
+  text-wrap: balance;
+}
+
+h1 { font-size: clamp(1.5rem, 1.1rem + 2vw, 2.25rem); }
+h2 { font-size: clamp(1.15rem, 1rem + 0.8vw, 1.4rem);  margin-top: var(--abstand-l); }
+h3 {
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  margin-top: var(--abstand-m);
+  color: var(--olive-tief);
+}
+
+h2 + p, h3 + p, h2 + ul, h3 + ul, h2 + dl { margin-top: var(--abstand-s); }
+
+a {
+  color: var(--olive-dunkel);
+  text-decoration-color: var(--salbei);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+}
+
+a:hover { text-decoration-color: var(--olive-dunkel); }
+
+/* Sichtbarer Fokus fuer Tastaturbedienung */
+a:focus-visible,
+button:focus-visible,
+.sprungmarke:focus {
+  outline: 2px solid var(--olive-dunkel);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- 4. Layout-Bausteine ------------------------------------------------- */
+
+.inhalt {
+  width: 100%;
+  max-width: var(--breite);
+  margin-inline: auto;
+  padding-inline: var(--abstand-m);
+}
+
+main {
+  flex: 1 0 auto;
+  padding-block: var(--abstand-l) var(--abstand-xl);
+}
+
+/* Zierelement der Visitenkarte: Linie – Punkt – Linie */
+.zierlinie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-block: var(--abstand-m);
+}
+
+.zierlinie::before,
+.zierlinie::after {
+  content: "";
+  width: clamp(2rem, 8vw, 5rem);
+  height: 1px;
+  background: var(--salbei);
+}
+
+.zierlinie span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--olive);
+}
+
+.sprungmarke {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--creme-hell);
+  color: var(--olive-dunkel);
+  padding: var(--abstand-s) var(--abstand-m);
+  z-index: 10;
+}
+
+.sprungmarke:focus {
+  left: var(--abstand-m);
+  top: var(--abstand-s);
+  position: fixed;
+}
+
+/* --- 5. Kopfbereich und Navigation -------------------------------------- */
+
+.kopf {
+  background: var(--creme-hell);
+  border-bottom: 1px solid var(--salbei-hell);
+  padding-block: var(--abstand-m);
+  text-align: center;
+}
+
+.marke {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abstand-m);
+  text-decoration: none;
+}
+
+.marke img { width: 3.5rem; }
+
+.marke-text { text-align: left; }
+
+.marke-name {
+  display: block;
+  font-size: clamp(1.15rem, 1rem + 1.2vw, 1.6rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--olive-dunkel);
+  line-height: 1.25;
+}
+
+.marke-zusatz {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--olive);
+}
+
+.navigation {
+  margin-top: var(--abstand-m);
+}
+
+.navigation ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.6rem;
+}
+
+.navigation a {
+  display: inline-block;
+  padding: 0.35rem 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  color: var(--olive-dunkel);
+  border-bottom: 2px solid transparent;
+}
+
+.navigation a:hover { border-bottom-color: var(--salbei); }
+
+.navigation a[aria-current="page"] {
+  border-bottom-color: var(--olive);
+  color: var(--olive-tief);
+}
+
+/* --- 6. Hero (Startseite) ----------------------------------------------- */
+
+.hero {
+  background: var(--creme-hell);
+  border-bottom: 1px solid var(--salbei-hell);
+  padding-block: var(--abstand-xl);
+  text-align: center;
+}
+
+.hero p {
+  margin-inline: auto;
+  max-width: 46ch;
+}
+
+.hero .leitsatz {
+  font-size: clamp(1.05rem, 1rem + 0.6vw, 1.25rem);
+  color: var(--olive-tief);
+}
+
+/* --- 7. Karten und Kacheln ---------------------------------------------- */
+
+.kacheln {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--abstand-m);
+  margin-top: var(--abstand-m);
+}
+
+.kachel {
+  background: var(--creme-hell);
+  border: 1px solid var(--salbei-hell);
+  padding: var(--abstand-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-s);
+}
+
+.kachel h2,
+.kachel h3 { margin-top: 0; }
+
+.kachel p { max-width: none; flex: 1 0 auto; }
+
+.karte {
+  background: var(--creme-hell);
+  border: 1px solid var(--salbei-hell);
+  padding: var(--abstand-m);
+  margin-top: var(--abstand-m);
+}
+
+.karte > :first-child { margin-top: 0; }
+
+/* Salbeiflaeche – Text darauf immer --olive-tief */
+.flaeche {
+  background: var(--salbei);
+  color: var(--olive-tief);
+  padding: var(--abstand-l) 0;
+  margin-top: var(--abstand-xl);
+}
+
+.flaeche h2,
+.flaeche h3 { color: var(--olive-tief); }
+
+.flaeche a { color: var(--olive-tief); text-decoration-color: var(--olive-tief); }
+
+/* Folgt eine Salbeiflaeche direkt auf den Hauptinhalt, wuerden sich der
+   Innenabstand von main und der Aussenabstand der Flaeche addieren. */
+main:has(+ .flaeche) { padding-bottom: 0; }
+
+/* --- 8. Buttons --------------------------------------------------------- */
+
+.knopf {
+  display: inline-block;
+  align-self: flex-start;
+  background: var(--salbei);
+  color: var(--olive-tief);
+  padding: 0.7rem 1.4rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  border: 1px solid var(--salbei);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.knopf:hover {
+  background: var(--salbei-hell);
+  border-color: var(--olive);
+}
+
+.knopf--leer {
+  background: transparent;
+  border-color: var(--olive);
+  color: var(--olive-dunkel);
+}
+
+.knopf--leer:hover { background: var(--salbei-hell); }
+
+/* --- 9. Listen ---------------------------------------------------------- */
+
+.liste li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin-top: 0.5rem;
+}
+
+.liste li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.75em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--salbei);
+}
+
+/* Beschreibungslisten fuer Preise, Sprechzeiten, Kontaktdaten */
+.daten {
+  margin-top: var(--abstand-s);
+  display: grid;
+  grid-template-columns: minmax(9rem, auto) 1fr;
+  gap: 0.5rem var(--abstand-m);
+  max-width: var(--textmass);
+}
+
+.daten dt {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--olive-tief);
+  padding-top: 0.25em;
+}
+
+.daten dd { margin: 0; }
+
+@media (max-width: 26rem) {
+  .daten { grid-template-columns: 1fr; gap: 0 0; }
+  .daten dd { margin-bottom: var(--abstand-s); }
+}
+
+/* --- 10. FAQ ------------------------------------------------------------ */
+
+.faq { margin-top: var(--abstand-m); }
+
+.faq details {
+  border-bottom: 1px solid var(--salbei-hell);
+  padding-block: var(--abstand-s);
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  padding-right: 1.5rem;
+  position: relative;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: var(--olive);
+  font-weight: 300;
+}
+
+.faq details[open] summary::after { content: "\2013"; }
+
+.faq details p { margin-top: var(--abstand-s); }
+
+/* --- 11. Hinweise und Platzhalter -------------------------------------- */
+
+.hinweis {
+  border-left: 3px solid var(--salbei);
+  padding: var(--abstand-s) var(--abstand-m);
+  margin-top: var(--abstand-m);
+  background: var(--creme-hell);
+  font-size: 0.95rem;
+}
+
+.hinweis p { max-width: none; }
+
+.klein { font-size: 0.9rem; }
+
+/* Platzhalter fallen absichtlich auf – Arbeitsliste fuer die Praxis. */
+.platzhalter {
+  background: #FFF3C4;
+  color: #574800;
+  padding: 0.05em 0.35em;
+  border-radius: 2px;
+  font-size: 0.95em;
+}
+
+/* --- 12. Bilder --------------------------------------------------------- */
+
+.bild {
+  margin-top: var(--abstand-m);
+  border: 1px solid var(--salbei-hell);
+  background: var(--creme-hell);
+}
+
+.bild img { width: 100%; }
+
+.bild figcaption {
+  padding: var(--abstand-s) var(--abstand-m);
+  font-size: 0.9rem;
+  color: var(--olive-tief);
+  border-top: 1px solid var(--salbei-hell);
+}
+
+/* Platzhalterflaeche, solange kein Foto vorliegt */
+.bild-platzhalter {
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+  background: var(--salbei-hell);
+  color: var(--olive-tief);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-align: center;
+  padding: var(--abstand-m);
+}
+
+.portrait { max-width: 18rem; }
+
+.portrait .bild-platzhalter { aspect-ratio: 3 / 4; }
+
+/* --- 13. Fussbereich ---------------------------------------------------- */
+
+.fuss {
+  background: var(--salbei);
+  color: var(--olive-tief);
+  padding-block: var(--abstand-l);
+  margin-top: auto;
+  font-size: 0.95rem;
+}
+
+.fuss a { color: var(--olive-tief); text-decoration-color: var(--olive-tief); }
+
+/* Salbeiflaeche und Fussbereich haben dieselbe Farbe – eine Haarlinie hält
+   sie optisch auseinander. */
+.flaeche + .fuss { border-top: 1px solid rgba(56, 64, 47, 0.22); }
+
+.fuss-raster {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--abstand-m);
+}
+
+.fuss h2 {
+  margin-top: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: var(--olive-tief);
+}
+
+.fuss p, .fuss li { max-width: none; }
+
+.fuss li { margin-top: 0.35rem; }
+
+.fuss-zeile {
+  margin-top: var(--abstand-l);
+  padding-top: var(--abstand-m);
+  border-top: 1px solid rgba(56, 64, 47, 0.25);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem var(--abstand-m);
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.fuss-zeile ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem var(--abstand-m);
+}
+
+/* --- 14. Ruecksicht auf Bewegungsempfindlichkeit ----------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+/* --- 15. Druckausgabe --------------------------------------------------- */
+
+@media print {
+  :root { --creme: #fff; --creme-hell: #fff; }
+
+  body { background: #fff; color: #000; font-size: 11pt; line-height: 1.5; }
+
+  .navigation,
+  .sprungmarke,
+  .kacheln,
+  .hero,
+  .knopf { display: none !important; }
+
+  .kopf, .fuss, .flaeche {
+    background: #fff !important;
+    color: #000 !important;
+    border: 0;
+  }
+
+  .fuss { border-top: 1px solid #999; }
+
+  main { padding-block: 0; }
+
+  .karte, .hinweis, .bild { border-color: #999; break-inside: avoid; }
+
+  .faq details { break-inside: avoid; }
+
+  /* Details im Druck immer aufgeklappt */
+  .faq details > *:not(summary) { display: block !important; }
+
+  a { text-decoration: none; color: #000; }
+
+  h1, h2, h3 { break-after: avoid; }
+}
