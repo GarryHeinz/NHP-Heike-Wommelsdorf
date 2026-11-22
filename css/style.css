@@ -67,6 +67,11 @@ p + p,
 ul + p,
 dl + p { margin-top: 1em; }
 
+/* Fliesstext, der direkt auf einen Kasten folgt, braucht mehr Luft. */
+.kacheln + p,
+.karte + p,
+.bild + p { margin-top: var(--abstand-m); }
+
 strong { font-weight: 600; }
 
 /* Ueberschriften: Grossbuchstaben mit weiten Abstaenden wie auf der Karte */

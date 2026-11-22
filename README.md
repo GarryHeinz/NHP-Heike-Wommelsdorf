@@ -129,6 +129,53 @@ Visitenkarte (eine leichte geometrische Schrift wie Jost oder Montserrat Light)
 Es müssen einfach alle Dateien und Ordner in dieser Form auf den Webserver – alle
 Verweise im Code sind relativ, es ist nichts zu konfigurieren.
 
+### GitHub Pages (dieses Repository)
+
+Einmalig einschalten:
+
+1. <https://github.com/GarryHeinz/NHP-Heike-Wommelsdorf> öffnen
+2. **Settings** → in der linken Spalte **Pages**
+3. Unter *Build and deployment* → *Source*: **Deploy from a branch**
+4. Branch: **main**, Ordner: **/ (root)** → **Save**
+
+GitHub baut die Seite dann in einer bis zwei Minuten. Danach ist sie erreichbar
+unter:
+
+```
+https://garryheinz.github.io/NHP-Heike-Wommelsdorf/
+```
+
+Ab diesem Zeitpunkt genügt für jede Änderung ein `git push` – die Seite
+aktualisiert sich von selbst. Den Fortschritt zeigt der Reiter **Actions** im
+Repository.
+
+Zwei Dateien gehören zu diesem Weg dazu:
+
+- `.nojekyll` (leer) sagt GitHub, die Dateien unverändert auszuliefern, statt sie
+  durch den Seitengenerator Jekyll zu schicken.
+- `404.html` erscheint im Design der Praxis, wenn jemand eine Adresse mit
+  Tippfehler aufruft – sonst zeigt GitHub seine eigene Fehlerseite.
+
+### Eigene Domain (nhp-wommelsdorf.de)
+
+Solange die Seite unter `github.io` läuft, steht die Adresse des Repositorys im
+Link. Für die eigene Domain:
+
+1. In *Settings → Pages → Custom domain* `www.nhp-wommelsdorf.de` eintragen und
+   *Enforce HTTPS* aktivieren, sobald GitHub das Zertifikat ausgestellt hat.
+2. Beim Domain-Anbieter einen **CNAME**-Eintrag für `www` auf
+   `garryheinz.github.io` setzen. Für die Domain ohne `www` zusätzlich vier
+   **A**-Einträge auf `185.199.108.153`, `185.199.109.153`, `185.199.110.153`
+   und `185.199.111.153`.
+3. **Die MX-Einträge unangetastet lassen** – über die Domain läuft die
+   E-Mail-Adresse der Praxis. Nur A-, AAAA- und CNAME-Einträge betreffen die
+   Webseite.
+
+GitHub legt beim Eintragen der Domain automatisch eine Datei `CNAME` im
+Repository an. Diese Datei nicht löschen.
+
+### Andere Wege (alternativ zu GitHub Pages)
+
 **Klassisches Webhosting (Strato, IONOS, All-Inkl. o. ä.):** Mit einem
 FTP-Programm wie [FileZilla](https://filezilla-project.org/) verbinden und den
 kompletten Inhalt dieses Ordners in das Web-Verzeichnis des Anbieters kopieren
@@ -141,12 +188,9 @@ Ordner in das Feld „Deploy manually“ ziehen – fertig. Alternativ das
 Git-Repository verbinden; dann genügt künftig ein `git push`. Build-Befehl bleibt
 leer, das Publish-Verzeichnis ist `.`.
 
-**GitHub Pages:** Im Repository unter *Settings → Pages* als Quelle den Branch
-`main` und den Ordner `/ (root)` auswählen.
+### Nach dem Livegang
 
-Nach dem Livegang zusätzlich:
-
-- die eigene Domain (`nhp-wommelsdorf.de`) beim Anbieter mit der Seite verbinden,
+- die eigene Domain verbinden (siehe oben),
 - die Adresse im Google-Unternehmensprofil hinterlegen, damit die Praxis in der
   Kartensuche gefunden wird,
 - zwei Seiten testweise durch <https://validator.w3.org/> prüfen.
