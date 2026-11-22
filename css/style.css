@@ -370,6 +370,14 @@ main:has(+ .flaeche) { padding-bottom: 0; }
 
 .daten dd { margin: 0; }
 
+.schlicht {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.schlicht li + li { margin-top: 0.25rem; }
+
 @media (max-width: 26rem) {
   .daten { grid-template-columns: 1fr; gap: 0 0; }
   .daten dd { margin-bottom: var(--abstand-s); }
